@@ -88,10 +88,12 @@ public class Cancer {
   }
 
   public static void displayGrid() {
-    String output = "  1234567890";
+    String output = " 01234567890\n";
     for (int row = 0; row <= 11; row++) {
-      if ((row > 0) && (row < 11)) {
+      if ((row > -1) && (row < 11)) {
         output += (row % 10);
+      } else {
+        output += " ";
       }
       for (int col = 0; col <= 11; col++) {
         output += grid[row][col];
