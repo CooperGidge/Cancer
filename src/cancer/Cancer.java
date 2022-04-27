@@ -41,7 +41,7 @@ public class Cancer {
         //Do no choose an element along the border
         //The border will always contain elements with spaces
         //(blank border)
-        for (int i = 0; i < 70; i++) {
+        for (int i = 0; i < 40; i++) {
           row = (int) (Math.random() * 10 + 1);
           col = (int) (Math.random() * 10 + 1);
           grid[row][col] = "-";
