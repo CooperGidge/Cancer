@@ -10,6 +10,10 @@ import java.util.Scanner;
 ========================================================
 WIP
 - Based off BRIGHTSPACE lesson
+TODO
+- Fix intend spacing inconsistencies
+- Add better comments / javadoc
+- Finish
 ========================================================
 */
 
@@ -145,14 +149,8 @@ public class Cancer {
   }
 
   public static void displayGrid() {
-//    String output = " 01234567890\n";
     String output = "\n";
     for (int row = 0; row < rowSize; row++) {
-//      if ((row > -1) && (row < 11)) {
-//        output += (row % 10);
-//      } else {
-//        output += " ";
-//      }
       for (int col = 0; col < colSize; col++) {
         output += grid[row][col];
       }
