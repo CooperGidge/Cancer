@@ -33,24 +33,12 @@ public class Cancer {
      */
     public static void main(String[] args) {
         
-        /*
-        // Create a Scanner to scan the rows and columns the user wants
-        Scanner scanInt = new Scanner(System.in);
-        
-        // Ask the user how many rows they want and hold their answer
-        // in the public static int rowSize.
-        System.out.println("Enter number of rows:");
-        rowSize = scanInt.nextInt();
-        
-        // Ask the user how many columns they want and hold their answer
-        // in the public static int colSize.
-        System.out.println("Enter number of columns:");
-        colSize = scanInt.nextInt();
-        */
+        // Set the grid dimensions (by default is commented out and not used)
+        //setGridDimensions();
         
         // Create a 2D array (grid) with 15 rows and 15 columns.
         // To allow the user to customize the amount of rows and columns,
-        // comment out the two lines below and uncomment the above code.
+        // comment out the two lines below and uncomment the above method call.
         rowSize = 15;
         colSize = 15;
         grid = new String[rowSize][colSize];
@@ -112,12 +100,40 @@ public class Cancer {
             }
         }
         
+        // Create a String to contain a plural "s" if there are more than 1 blobs found
+        // (for the printed message to be grammatically correct)
+        // If there is not more than 1 blob found, keep the String empty so it doesn't
+        // impact the message
+        String blobsFoundPlural = "";
+        if (blobsFound > 1) {
+            blobsFoundPlural = "s";
+        }
+        
         // Display how many blobs were found
-        System.out.println("The file had " + blobsFound + " cancer spots in it");
+        System.out.println("The file had " + blobsFound + " cancer spot" + blobsFoundPlural + " in it");
         System.out.println("The new grid is");
         
         // Print the new grid
         displayGrid();
+    }
+    
+    /**
+     * Method for setting the amount of rows and columns in the grid
+     * By default, it is not used but it exists just in case
+     */
+    public static void setGridDimensions() {
+        // Create a Scanner to scan the rows and columns the user wants
+        Scanner scanInt = new Scanner(System.in);
+        
+        // Ask the user how many rows they want and hold their answer
+        // in the public static int rowSize.
+        System.out.println("Enter number of rows:");
+        rowSize = scanInt.nextInt();
+        
+        // Ask the user how many columns they want and hold their answer
+        // in the public static int colSize.
+        System.out.println("Enter number of columns:");
+        colSize = scanInt.nextInt();
     }
     
     /**
