@@ -4,7 +4,8 @@
  */
 package cancer;
 
-// Import Scanner to make scanning for user input possible.
+// Imports required to scan a text file
+import java.io.*;
 import java.util.Scanner;
 
 /**
@@ -31,8 +32,24 @@ public class Cancer {
     
     /**
      * @param args the command line arguments
+     * @throws FileNotFoundException
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
+        
+        File text = new File("cancer.txt");
+        
+        Scanner scnr = new Scanner(text);
+     
+        //Reading each line of the file using Scanner class
+        
+        // Count rows
+        rowSize = 0;
+        while(scnr.hasNextLine()){
+            rowSize++;
+            System.out.println(scnr.nextLine());
+        }
+        
+        scnr.close();
         
         // Set the grid dimensions (by default is commented out and not used)
         //setGridDimensions();
@@ -116,6 +133,13 @@ public class Cancer {
         
         // Print the new grid
         displayGrid();
+    }
+    
+    /**
+     * Read a text file
+     */
+    public static void readTextFile() {
+        
     }
     
     /**
