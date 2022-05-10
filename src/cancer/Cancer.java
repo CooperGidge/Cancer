@@ -36,76 +36,20 @@ public class Cancer {
      */
     public static void main(String[] args) throws FileNotFoundException {
         
-        File text = new File("cancer.txt");
-        
-        Scanner scnr = new Scanner(text);
-     
-        //Reading each line of the file using Scanner class
-        
-        // Count rows
-        rowSize = 0;
-        while(scnr.hasNextLine()){
-            rowSize++;
-            System.out.println(scnr.nextLine());
-        }
-        
-        scnr.close();
-        
-        // Set the grid dimensions (by default is commented out and not used)
-        //setGridDimensions();
-        
         // Create a 2D array (grid) with 15 rows and 15 columns.
         // To allow the user to customize the amount of rows and columns,
         // comment out the two lines below and uncomment the above method call.
         rowSize = 15;
         colSize = 15;
         grid = new String[rowSize][colSize];
-
-        // Before adding minus (-) signs, fill the array with plus (+) signs.
-        for (row = 0; row < rowSize; row++) {
-            for (col = 0; col < colSize; col++) {
-                grid[row][col] = "+";
-            }
-        }
         
-        // Present the user with a qustion:
-        // Input cells manually or
-        // Generate them randomly.
-        System.out.println("Do you want to input cells manually or generate random cells automatically?");
-        System.out.println("1 - Input cells manually");
-        System.out.println("2 - Generate random cells automatically");
-        
-        // Create a new Scanner to scan the user's answer to the question.
-        // Answer will be stored as a String to fix errors caused by inputting
-        // a String when Java is looking for an int.
-        Scanner scanString = new Scanner(System.in);
-        
-        // String to store the user's answer to the question.
-        String ans = scanString.nextLine();
-        
-        // If...
-        if (ans.equals("1")) {
-            // The user says 1, print instructions and call the
-            // inputCells() method for the user to input their own cells.
-            System.out.println("\nEnter either a plus (+) or minus (-)");
-            System.out.println("in order from top left to bottom right");
-            System.out.println("(excluding borders)");
-            System.out.println("\nTip:\nPress \"enter\" to speed type a plus (+),");
-            System.out.println("as it will be registered as a plus (+).");
-            inputCells();
-        } else {
-            // The user says 2, or any other value, print the notice and call the
-            // randomizeCells() method to randomly add minus (-) cells
-            // (This is the default option - if the user doesn't input 1 or 2, this
-            // will be called, hence the lack of a condition.
-            System.out.println("\nRandomizing cells...");
-            randomizeCells();
-        }
+        readTextFile();
 
         // Print the current grid, now containing plus (-) and minus (-) signs
         // (before the removal of minis (-) blobs)
         displayGrid();
         
+        // Check for cancer cells
         // Loop through each cell (excluding the borders)
         for (int row = 1; row < (rowSize-1); row++) {
             for (int col = 1; col < (colSize-1); col++) {
@@ -137,9 +81,23 @@ public class Cancer {
     
     /**
      * Read a text file
+     * @throws FileNotFoundException
      */
-    public static void readTextFile() {
+    public static void readTextFile() throws FileNotFoundException {
+        File text = new File("cancer.txt");
         
+        Scanner line = new Scanner(text);
+        //Reading each line of the file using Scanner class
+        int lineNum = 0;
+        while(line.hasNextLine()){
+            String thisRow = line.nextLine();
+            for (int j = 0; j < colSize; j++) {
+                grid[lineNum][j] = thisRow.substring(j, j+1);
+            }
+            lineNum++;
+        }
+        
+        line.close();
     }
     
     /**
@@ -232,7 +190,7 @@ public class Cancer {
      */
     public static void displayGrid() {
         // create a String output to hold the grid.
-        String output = "\n";
+        String output = "";
         // For each cell, add it to the String output
         for (int row = 0; row < rowSize; row++) {
             for (int col = 0; col < colSize; col++) {
